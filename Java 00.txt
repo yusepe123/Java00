@@ -1,0 +1,88 @@
+public class Test {
+
+    public static void main(String[] args) {
+
+        Cuenta miCuenta = new Cuenta();
+        miCuenta.saldo = 500.0;
+        Cuenta otraCuenta = miCuenta;
+        otraCuenta.saldo += 1000.0;
+
+        System.out.println(miCuenta.saldo);
+    }
+}
+
+
+Correcto. Imprime 1500, porque las dos referencias (miCuenta y otraCuenta) apuntan al mismo objeto, lo que hace que se agregue la cantidad 1000 a los 500 anteriores.
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+Era necesario definir el tipo correcto de retorno en el método.
+
+
+Correcto. El método no puede declararse como void. Es correcto usar el tipo boolean:
+
+public boolean sacar(double valor) {
+
+    if(saldo >= valor) {
+        saldo -= valor;
+        return true;
+    } else {
+        return false;
+    }
+} 
+
+
+1) Escriba el método de deposita, que recibe un valor de tipo double. Recuerde que cuando nuestro método no devuelve ningún valor, debemos poner la palabra especial void, así:
+
+public void deposita(double valor){
+
+}COPIA EL CÓDIGO
+2) Complete su método de deposita, agregue la cantidad recibida al saldo de su cuenta, no olvide usar this.
+
+// dentro de la clase Cuenta
+public void deposita(double valor){
+
+    this.saldo += valor;
+}COPIA EL CÓDIGO
+3) Ahora cree el método saca, que también recibe un valor de tipo double, en este caso, nuestro método debe retornar un valor boolean, así que no olvide el return.
+
+public boolean saca(double valor){
+
+    if(this.saldo >= valor){
+        this.saldo -= valor;
+        return true;
+    } else {
+        return false;
+    }
+}COPIA EL CÓDIGO
+4) Ahora escriba el método de transfiere, también debe retornar un booleano, pero ahora recibirá una Cuenta que será el destino y la cantidad que se transferirá.
+
+public boolean transfiere(double valor, Cuenta destino){
+
+    if(this.saldo >= valor){
+        this.saldo -= valor;
+        destino.deposita(valor);    
+        return true;
+    }
+    return false;
+}COPIA EL CÓDIGO
+5) No olvide probar sus métodos, para eso, cree una clase (usamos el nombre TestMetodos) y escriba el main, ¡vea si todo funciona!
+
+6) Queda como desafío cambiar el método transfiere para reutilizar nuestro código implementado en saca para simplificar el código.
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+public class Persona {
+
+    String nombre;
+    String numeroIdentidad;
+    int edad;
+    Direccion direccion;
+}
+
+public class Empresa {
+
+    String razonSocial;
+    String numeroIdentidadSocial;
+    Direccion direccion;
+}
